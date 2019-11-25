@@ -10,12 +10,12 @@ import tensorflow as tf
 parentdir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(parentdir)
 
-from lib.networks.factory import get_network
-from lib.fast_rcnn.config import cfg
-from lib.fast_rcnn.test import test_ctpn
-from lib.fast_rcnn.nms_wrapper import nms
-from lib.utils.timer import Timer
-from text_proposal_connector import TextProposalConnector
+from ..lib.networks.factory import get_network
+from ..lib.fast_rcnn.config import cfg
+from ..lib.fast_rcnn.test import test_ctpn
+from ..lib.fast_rcnn.nms_wrapper import nms
+from ..lib.utils.timer import Timer
+from .text_proposal_connector import TextProposalConnector
 
 CLASSES = ('__background__', 'text')
 

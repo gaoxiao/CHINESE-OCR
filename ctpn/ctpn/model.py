@@ -27,12 +27,17 @@ load network
 def load_tf_model():
     cfg.TEST.HAS_RPN = True  # Use RPN for proposals
     # init session
-    config = tf.ConfigProto(allow_soft_placement=True)
+    # config = tf.ConfigProto(allow_soft_placement=True)
+
+    config = tf.ConfigProto()
+    config.gpu_options.allocator_type = 'BFC'
+    config.gpu_options.per_process_gpu_memory_fraction = 0.5  ## GPU最大占用量
+    config.gpu_options.allow_growth = True  ##GPU是否可动态增加
     net = get_network("VGGnet_test")
     # load model
     saver = tf.train.Saver()
-    # sess = tf.Session(config=config)
-    sess = tf.Session()
+    sess = tf.Session(config=config)
+    # sess = tf.Session()
     ckpt_path = './ctpn/ctpn/checkpoints'
     ckpt = tf.train.get_checkpoint_state(ckpt_path)
     reader = tf.train.NewCheckpointReader(ckpt.model_checkpoint_path)

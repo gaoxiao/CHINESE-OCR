@@ -13,7 +13,7 @@ import keys_crnn
 from math import *
 import cv2
 
-GPU = False
+GPU = True
 
 
 def dumpRotateImage_(img, degree, pt1, pt2, pt3, pt4):

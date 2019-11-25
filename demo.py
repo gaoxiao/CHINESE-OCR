@@ -24,8 +24,8 @@ def ocr(img_path):
         img, model='pytorch', adjust=True, detectAngle=False)
     print("It takes time:{}s".format(time.time() - t))
     print("---------------------------------------")
-    for key in result:
-        print(result[key][1])
+    # for key in result:
+    #     print(result[key][1])
 
 
 if __name__ == '__main__':

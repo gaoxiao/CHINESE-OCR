@@ -120,10 +120,10 @@ def model(img, model='keras', adjust=False, detectAngle=False):
     # 识别区域排列
     text_recs = sort_box(text_recs)
 
-    print(len(text_recs))
+    print('text_recs size: {}'.format(len(text_recs)))
 
     t = time.time()
-    result = crnnRec(img, text_recs[:3], model, adjust=adjust)
+    result = crnnRec(img, text_recs, model, adjust=adjust)
     print("crnnRec takes time:{}s".format(time.time() - t))
 
     return result, tmp, angle

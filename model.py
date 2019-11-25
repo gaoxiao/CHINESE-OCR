@@ -1,5 +1,6 @@
 # coding:utf-8
 ##添加文本方向 检测模型，自动检测文字方向，0、90、180、270
+import time
 from math import *
 
 import cv2
@@ -110,12 +111,21 @@ def model(img, model='keras', adjust=False, detectAngle=False):
         elif angle == 270:
             im = im.transpose(Image.ROTATE_270)
         img = np.array(im)
+
+
+    t = time.time()
     # 进行图像中的文字区域的识别
     text_recs, tmp, img=text_detect(img)
+    print("text_detect takes time:{}s".format(time.time() - t))
     # 识别区域排列
     text_recs = sort_box(text_recs)
-    # 
-    result = crnnRec(img, text_recs, model, adjust=adjust)
+
+    print(len(text_recs))
+
+    t = time.time()
+    result = crnnRec(img, text_recs[:3], model, adjust=adjust)
+    print("crnnRec takes time:{}s".format(time.time() - t))
+
     return result, tmp, angle
 
 
